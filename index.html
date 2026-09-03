@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Living Well, Preparing Well</title>
+<meta name="description" content="An accessible interactive guide for thinking and talking about serious illness, dying, loss, meaning, and what matters most.">
+<style>
+:root{
+  --bg:#f7f7f3; --card:#fff; --ink:#24312d; --muted:#64706b; --line:#dfe5e1;
+  --accent:#3e6b61; --accent2:#dcebe5; --warm:#f4e7d5; --warm2:#fff8ee;
+  --shadow:0 12px 30px rgba(31,50,44,.08); --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+header{padding:52px 20px 36px;background:linear-gradient(135deg,#e7f1ed,#f8f3ea)}
+.hero{max-width:1050px;margin:auto}
+.eyebrow{font-weight:750;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:var(--accent)}
+h1{font-size:clamp(2.3rem,6vw,4.8rem);line-height:1.03;margin:12px 0 18px;max-width:850px;letter-spacing:-.04em}
+.hero p{font-size:1.18rem;max-width:760px;color:#50605a}
+.notice{margin-top:25px;padding:15px 18px;border-left:4px solid var(--accent);background:rgba(255,255,255,.7);border-radius:10px;color:#46534e}
+.progress-wrap{position:sticky;top:0;z-index:20;background:rgba(247,247,243,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.progress{max-width:1050px;margin:auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
+.progressbar{height:8px;background:#e1e7e3;border-radius:99px;flex:1;overflow:hidden}.progressbar span{display:block;height:100%;width:0;background:var(--accent);transition:.3s}
+.progress small{white-space:nowrap;color:var(--muted)}
+nav{max-width:1050px;margin:20px auto 0;padding:0 16px;display:flex;gap:8px;overflow:auto}
+nav a{white-space:nowrap;text-decoration:none;background:#fff;border:1px solid var(--line);padding:8px 13px;border-radius:99px;font-size:.9rem}
+main{max-width:1050px;margin:auto;padding:10px 16px 70px}
+section{scroll-margin-top:75px;padding:42px 0 10px}
+.section-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:22px}
+.num{flex:0 0 44px;height:44px;border-radius:14px;background:var(--accent);color:white;display:grid;place-items:center;font-weight:800}
+h2{font-size:2rem;line-height:1.15;margin:0 0 7px;letter-spacing:-.025em}
+.lead{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 10px;font-size:1.12rem}
+.card p:last-child{margin-bottom:0}
+.callout{background:var(--accent2);border:0}
+.warm{background:var(--warm2)}
+ul{padding-left:1.2rem} li{margin:.45rem 0}
+details{background:#fff;border:1px solid var(--line);border-radius:15px;margin:10px 0;padding:14px 16px}
+summary{font-weight:750;cursor:pointer}
+.reflection{margin-top:16px;background:#f1f4f1;border-radius:16px;padding:18px}
+textarea{width:100%;min-height:105px;border:1px solid #cfd8d3;border-radius:12px;padding:12px;background:#fff;resize:vertical}
+.save-row{display:flex;gap:10px;align-items:center;margin-top:9px}
+.btn{border:0;border-radius:11px;padding:9px 14px;background:var(--accent);color:#fff;font-weight:700}
+.btn.secondary{background:#e7ece9;color:var(--ink)}
+.checklist label{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.checklist input{margin-top:5px;accent-color:var(--accent);transform:scale(1.15)}
+.pill{display:inline-block;padding:4px 9px;border-radius:99px;background:#edf1ef;color:#52605a;font-size:.8rem;font-weight:700}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 12px}.tab.active{background:var(--accent);color:#fff}
+.tabpanel{display:none}.tabpanel.active{display:block}
+.quote{font-size:1.2rem;font-weight:650;line-height:1.5;padding:24px;background:var(--warm);border-radius:18px}
+.meter{height:12px;background:#e2e7e4;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--accent);transition:.3s}
+footer{padding:32px 16px;text-align:center;color:var(--muted);border-top:1px solid var(--line);background:#fff}
+footer a{font-weight:750}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.card{padding:18px}section{padding-top:32px}nav{margin-top:10px}h2{font-size:1.65rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<div class="hero">
+<div class="eyebrow">A gentle guide for reflection and conversation</div>
+<h1>Living well. Preparing well.</h1>
+<p>Thinking about serious illness, dying, loss, and what matters most can feel overwhelming. This guide breaks big questions into small, manageable pieces—so you can understand, reflect, talk, and make choices at your own pace.</p>
+<div class="notice"><strong>You do not have to answer everything.</strong> Skip anything that feels too much. Come back later. If a question brings up intense distress, pause and reach out to someone you trust or a qualified professional.</div>
+</div>
+</header>
+
+<div class="progress-wrap">
+<div class="progress"><small id="progressText">0% explored</small><div class="progressbar"><span id="progressFill"></span></div><small>Take your time</small></div>
+</div>
+<nav>
+<a href="#start">Start</a><a href="#patterns">Patterns</a><a href="#coping">Coping</a><a href="#language">Talking</a><a href="#planning">Planning</a><a href="#perspective">Perspective</a><a href="#legacy">Legacy</a><a href="#meaning">Meaning</a><a href="#actions">Next steps</a>
+</nav>
+
+<main>
+<section id="start">
+<div class="section-head"><div class="num">1</div><div><h2>Start with one simple idea</h2><p class="lead">Death is part of life, but many of us have had little opportunity to see or talk about dying.</p></div></div>
+<div class="grid">
+<div class="card callout"><h3>Why preparation can help</h3><p>When we do not know what to expect, our minds often fill the gaps with frightening images from television, news, stories, or previous experiences. Learning about dying can make the unfamiliar less mysterious and can help families feel more prepared.</p></div>
+<div class="card"><h3>Preparation is not giving up</h3><p>Planning for possible decline does not mean you have stopped living. It can make room for honest choices about comfort, relationships, priorities, and how you want to spend the time you have.</p></div>
+<div class="card"><h3>There is no single “right” experience</h3><p>People differ in what they fear, hope for, believe, and want. Some fear the process; some fear the moment of death; some fear separation; some find comfort in faith or a sense of connection. The safest starting point is curiosity: <strong>ask rather than assume.</strong></p></div>
+<div class="card"><h3>Care can be whole-person care</h3><p>Good palliative care is not only about the final moments. It can address physical symptoms as well as emotional, social, and spiritual concerns, and can be useful when someone has serious illness even before the very end of life.</p></div>
+</div>
+<div class="reflection"><strong>Quick check-in:</strong> What feeling comes up when you think about death or serious illness?<br><br>
+<label><input type="radio" name="feeling" value="curious"> Curious</label>&nbsp;&nbsp;
+<label><input type="radio" name="feeling" value="uneasy"> Uneasy</label>&nbsp;&nbsp;
+<label><input type="radio" name="feeling" value="afraid"> Afraid</label>&nbsp;&nbsp;
+<label><input type="radio" name="feeling" value="neutral"> Neutral</label>&nbsp;&nbsp;
+<label><input type="radio" name="feeling" value="other"> Something else</label>
+</div>
+</section>
+
+<section id="patterns">
+<div class="section-head"><div class="num">2</div><div><h2>Recognize the pattern</h2><p class="lead">Understanding common changes can reduce fear and help loved ones know when to focus on comfort and presence.</p></div></div>
+<div class="card">
+<div class="quote">A useful way to think about the final phase: energy gradually narrows. A person may become more tired, sleep more, spend less time awake, and eventually become deeply unconscious.</div>
+<p>Individual illnesses and people vary, so this is not a timetable or a prediction. It is a framework for understanding that the body can gradually slow down.</p>
+<div class="grid">
+<div><h3>As energy declines</h3><ul><li>Activity may become shorter and more tiring.</li><li>Rest and sleep may become increasingly important.</li><li>Time awake may gradually decrease.</li><li>Near the end, a person may be unconscious much of the time.</li></ul></div>
+<div><h3>Near the end</h3><ul><li>Breathing may change in depth, speed, and rhythm.</li><li>There may be pauses between breaths.</li><li>Breathing can gradually become quieter and stop.</li><li>The process described in the source is often much gentler than people fear.</li></ul></div>
+</div>
+<div class="notice"><strong>Important:</strong> Changes in breathing, alertness, restlessness, pain, or other symptoms should be interpreted by the person's healthcare team. Do not use this guide to diagnose or manage symptoms on your own.</div>
+</div>
+<details><summary>What about a sudden burst of energy?</summary><p>Sometimes a person who has been declining may have an unexpected temporary increase in energy or activity. The source describes this as sometimes occurring before a final decline, while also showing that medication side effects can mimic “energy” through severe restlessness. The key lesson is to look carefully at the whole picture rather than assuming a sudden change means recovery.</p></details>
+<div class="reflection"><strong>Reflect:</strong> If you were supporting someone near the end of life, what would help you feel more prepared?<textarea id="r-patterns" placeholder="Write a few words…"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-patterns')">Save reflection</button><span id="saved-r-patterns"></span></div></div>
+</section>
+
+<section id="coping">
+<div class="section-head"><div class="num">3</div><div><h2>Everyone copes differently</h2><p class="lead">Coping styles are not moral grades. A strategy that protects one person can frustrate another.</p></div></div>
+<div class="grid">
+<div class="card"><span class="pill">Control</span><h3>“Tell me the plan.”</h3><p>Some people cope by gathering information, organizing details, and trying to stay in control.</p></div>
+<div class="card"><span class="pill">Avoidance</span><h3>“I don't want to think about it.”</h3><p>Some people cope by turning attention elsewhere or limiting contact with frightening information.</p></div>
+<div class="card"><span class="pill">Helplessness</span><h3>“I can't do this alone.”</h3><p>Feeling unable to act can be painful, but it can also create space for others to provide care and support.</p></div>
+<div class="card"><span class="pill">Acceptance</span><h3>“I will meet what comes.”</h3><p>Some people focus on accepting what cannot be changed and adapting to each stage.</p></div>
+<div class="card"><span class="pill">Resilience</span><h3>“What can I still do?”</h3><p>Some people adapt creatively, preserve routines, and find meaningful activities within new limits.</p></div>
+<div class="card"><span class="pill">Anxious focus</span><h3>“What if something goes wrong?”</h3><p>Some people become highly alert to threats and repeatedly seek reassurance or information.</p></div>
+</div>
+<div class="card warm" style="margin-top:16px"><h3>When coping styles collide</h3><p>A planner may feel abandoned by someone who avoids the subject. An avoidant person may feel pressured by a planner. Neither is automatically “coping better.” The goal is to notice the difference, name it, and find a workable middle ground.</p></div>
+<div class="reflection"><strong>Try this:</strong> Which style sounds most like you when life becomes frightening?<br><br>
+<select id="style" style="padding:10px;border:1px solid #cfd8d3;border-radius:10px">
+<option value="">Choose one…</option><option>Control and planning</option><option>Avoiding the subject</option><option>Looking for others to take over</option><option>Accepting and adapting</option><option>Finding ways to stay engaged</option><option>Worrying and seeking reassurance</option><option>A mixture</option>
+</select>
+<p><small>Then ask: “What does this style help me do? What might it make harder?”</small></p></div>
+</section>
+
+<section id="language">
+<div class="section-head"><div class="num">4</div><div><h2>Use clear language</h2><p class="lead">Naming death directly can make difficult conversations more understandable.</p></div></div>
+<div class="grid">
+<div class="card callout"><h3>Why words matter</h3><p>Euphemisms can feel gentler, but they can also create ambiguity. Clear words such as <strong>dying</strong>, <strong>died</strong>, and <strong>death</strong> can help people understand what is happening and make informed choices.</p></div>
+<div class="card"><h3>Ask instead of guessing</h3><p>Do not assume what someone means by “a good death,” what they fear, what they believe, or what care they want. Ask open questions and listen for the answer.</p></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Conversation starters</h3>
+<details><summary>“If your health became much worse, what would matter most to you?”</summary><p>Listen for priorities: comfort, alertness, being at home, being with particular people, independence, unfinished responsibilities, or something else.</p></details>
+<details><summary>“What are you most worried about?”</summary><p>Do not rush to reassure. Fear can become more manageable once it is fully expressed and understood.</p></details>
+<details><summary>“If you couldn't speak for yourself, who would need to understand your wishes?”</summary><p>This opens the door to advance care planning and sharing preferences with the people and professionals who may need to act on them.</p></details>
+<details><summary>“Would you rather focus on living as long as possible, or on comfort and quality of life if those goals conflict?”</summary><p>There is no universal answer. These are personal values questions that deserve careful discussion with loved ones and healthcare professionals.</p></details>
+</div>
+<div class="reflection"><strong>One conversation to have:</strong><textarea id="r-language" placeholder="Who could you talk with, and what would you want them to understand?"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-language')">Save reflection</button><span id="saved-r-language"></span></div></div>
+</section>
+
+<section id="planning">
+<div class="section-head"><div class="num">5</div><div><h2>Plan before there is a crisis</h2><p class="lead">Advance planning turns “I hope they know what I want” into clearer guidance.</p></div></div>
+<div class="card callout"><h3>A plan can answer practical questions</h3><p>Where would you prefer to receive care if possible? Who should know your wishes? What matters most if treatments cannot restore the life you value? What should happen in an emergency? What would you want others to understand if you could not speak?</p></div>
+<div class="grid" style="margin-top:16px">
+<div class="card checklist"><h3>My planning checklist</h3>
+<label><input type="checkbox" data-check="care"> I have thought about what “quality of life” means to me.</label>
+<label><input type="checkbox" data-check="place"> I have thought about where I would prefer care, if feasible.</label>
+<label><input type="checkbox" data-check="person"> I know who I would want involved in decisions.</label>
+<label><input type="checkbox" data-check="wishes"> I have shared important preferences with someone I trust.</label>
+<label><input type="checkbox" data-check="medical"> I know which medical questions I need to discuss with my healthcare team.</label>
+<label><input type="checkbox" data-check="documents"> I know where my important planning documents are kept.</label>
+</div>
+<div class="card"><h3>Important distinction</h3><p>A medical order about resuscitation is not the same as refusing all treatment. The source specifically emphasizes that decisions about resuscitation and other treatments are separate questions.</p><p><strong>For U.S. planning:</strong> terminology and documents vary by state. Talk with your clinician and appropriate legal/advance-care-planning resources about the forms that apply to you.</p><div class="notice">This page is educational, not medical or legal advice.</div></div>
+</div>
+</section>
+
+<section id="perspective">
+<div class="section-head"><div class="num">6</div><div><h2>Step back and look again</h2><p class="lead">When emotions are intense, our first interpretation may not be the whole picture.</p></div></div>
+<div class="grid">
+<div class="card"><h3>From certainty → curiosity</h3><p>Instead of “I know exactly what this means,” try “What else might be happening?” Curiosity creates room for new information.</p></div>
+<div class="card"><h3>From appearance → meaning</h3><p>A behavior that looks confusing, passive, dramatic, or irrational may have a different meaning to the person experiencing it. Listen for the need underneath the behavior.</p></div>
+<div class="card"><h3>From fixing → accompanying</h3><p>Sometimes the most helpful action is not solving the situation. It is being present, listening, naming what is happening, and helping someone feel safe.</p></div>
+<div class="card"><h3>From “their experience” → “their experience”</h3><p>What looks unbearable to us may still contain moments that are meaningful to the person living it. Do not substitute your priorities for theirs.</p></div>
+</div>
+<div class="reflection"><h3>Perspective practice</h3><p>Think of a difficult situation. Complete these three lines:</p>
+<label>What I notice: <textarea id="r-notice" placeholder="What happened? What did I observe?"></textarea></label>
+<label>What I assume: <textarea id="r-assume" placeholder="What meaning did I immediately give it?"></textarea></label>
+<label>What else might be true: <textarea id="r-alternative" placeholder="What other interpretation could fit?"></textarea></label>
+<button class="btn" onclick="saveAll(['r-notice','r-assume','r-alternative'])">Save reflection</button> <span id="saved-r-notice"></span>
+</div>
+</section>
+
+<section id="legacy">
+<div class="section-head"><div class="num">7</div><div><h2>Legacy is more than possessions</h2><p class="lead">We leave traces through relationships, stories, actions, values, and the ways we affect other people.</p></div></div>
+<div class="grid">
+<div class="card"><h3>What you inherited</h3><p>Think beyond money or objects. You may have inherited stories, habits, encouragement, values, skills, traditions, or ways of treating other people.</p></div>
+<div class="card"><h3>What you already gave</h3><p>You may already have changed lives through ordinary acts: teaching, listening, caring, creating, raising someone, making a workplace kinder, or showing courage during hardship.</p></div>
+<div class="card callout"><h3>What you want to leave</h3><p>A legacy can be intentional—letters, photographs, stories, a gift, a cause, a tradition—or simply the memory of how people felt when they were with you.</p></div>
+<div class="card"><h3>Start small</h3><p>You do not need a grand project. One conversation, one letter, one photograph labeled with names, or one story recorded for someone you love can be meaningful.</p></div>
+</div>
+<div class="reflection"><strong>Legacy map</strong>
+<textarea id="r-legacy" placeholder="What did I receive? What have I already given? What would I like to pass on?"></textarea>
+<div class="save-row"><button class="btn" onclick="saveNote('r-legacy')">Save reflection</button><span id="saved-r-legacy"></span></div></div>
+</section>
+
+<section id="meaning">
+<div class="section-head"><div class="num">8</div><div><h2>Meaning, values, and connection</h2><p class="lead">A meaningful life does not require one particular religion, philosophy, or worldview.</p></div></div>
+<div class="card">
+<p>People make meaning through many frameworks: faith, relationships, nature, art, music, community, ethics, service, or a sense of connection to something larger than themselves. Near the end of life, people may review what their life has meant and what matters now.</p>
+<div class="grid">
+<div><h3>The four messages</h3><p class="quote" style="font-size:1.05rem">“I love you.”<br>“I’m sorry.”<br>“Please forgive me.”<br>“Thank you.”</p></div>
+<div><h3>Why they matter</h3><p>These messages can express love, repair, regret, forgiveness, appreciation, and connection. You do not have to wait until someone is dying to say them.</p></div>
+</div>
+</div>
+<div class="card warm" style="margin-top:16px"><h3>Values check</h3><p>Ask yourself: “If my life were a little more aligned with what I value, what would I do differently?”</p>
+<div class="tabs"><button class="tab active" data-tab="values">Values</button><button class="tab" data-tab="gratitude">Gratitude</button><button class="tab" data-tab="forgive">Forgiveness</button></div>
+<div id="values" class="tabpanel active"><textarea id="r-values" placeholder="What values do I want my daily life to show?"></textarea></div>
+<div id="gratitude" class="tabpanel"><textarea id="r-gratitude" placeholder="Who would I like to thank, and what for?"></textarea></div>
+<div id="forgive" class="tabpanel"><textarea id="r-forgive" placeholder="Is there an apology, repair, forgiveness, or self-forgiveness I want to consider?"></textarea></div>
+<button class="btn" onclick="saveAll(['r-values','r-gratitude','r-forgive'])">Save reflections</button></div>
+</section>
+
+<section id="actions">
+<div class="section-head"><div class="num">9</div><div><h2>Turn reflection into one small action</h2><p class="lead">The goal is not to solve mortality. The goal is to live with greater clarity about what matters.</p></div></div>
+<div class="card checklist">
+<label><input type="checkbox" data-check="talk"> Have one honest conversation with someone I trust.</label>
+<label><input type="checkbox" data-check="ask"> Ask my healthcare professional one question I have been avoiding.</label>
+<label><input type="checkbox" data-check="values2"> Choose one value and practice it this week.</label>
+<label><input type="checkbox" data-check="thank"> Tell someone “thank you.”</label>
+<label><input type="checkbox" data-check="love"> Tell someone “I love you” or otherwise show them clearly.</label>
+<label><input type="checkbox" data-check="sorry"> Make an apology or repair an important relationship, when appropriate and safe.</label>
+<label><input type="checkbox" data-check="legacy2"> Record or preserve one story, photo, recipe, message, or memory.</label>
+<label><input type="checkbox" data-check="plan2"> Begin or update my advance-care planning.</label>
+</div>
+<div class="card callout" style="margin-top:16px"><h3>One sentence to carry with you</h3><p class="quote">You do not need to predict the future to prepare for it; you can clarify what matters and let that guide the next step.</p></div>
+<div class="reflection"><h3>My next step</h3><textarea id="r-next" placeholder="The one small thing I will do next is…"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-next')">Save</button><span id="saved-r-next"></span></div></div>
+</section>
+
+<section>
+<div class="card">
+<h3>A gentle reminder</h3>
+<p>Learning about dying can bring sadness, grief, fear, relief, or unexpected memories. You are allowed to stop. If an experience keeps intruding, feels as though it is happening again, or is interfering with daily life, consider talking with a healthcare or mental-health professional.</p>
+<p><strong>This guide does not replace individualized medical, mental-health, legal, or spiritual care.</strong></p>
+</div>
+</section>
+</main>
+
+<footer>
+Developed by <a href="https://mindx.us/" target="_blank" rel="noopener noreferrer">Mind X Associates</a>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const notes=[...document.querySelectorAll('textarea')];
+notes.forEach(t=>{const v=localStorage.getItem('guide-'+t.id); if(v!==null)t.value=v;});
+document.querySelectorAll('input[type=checkbox][data-check]').forEach(c=>{
+  c.checked=localStorage.getItem('check-'+c.dataset.check)==='1';
+  c.addEventListener('change',()=>{localStorage.setItem('check-'+c.dataset.check,c.checked?'1':'0');updateProgress();});
+});
+function saveNote(id){
+  const t=document.getElementById(id); localStorage.setItem('guide-'+id,t.value);
+  const s=document.getElementById('saved-'+id); if(s){s.textContent='Saved locally';setTimeout(()=>s.textContent='',1600);}
+}
+function saveAll(ids){ids.forEach(saveNote); const el=document.getElementById('saved-'+ids[0]); if(el){el.textContent='Saved locally';setTimeout(()=>el.textContent='',1600);}}
+document.querySelectorAll('.tab').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+   document.querySelectorAll('.tabpanel').forEach(x=>x.classList.remove('active'));
+   btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active');
+ });
+});
+function updateProgress(){
+ const sections=[...document.querySelectorAll('main section')].filter(s=>s.id);
+ const visited=sections.filter(s=>{const r=s.getBoundingClientRect();return r.top<window.innerHeight*.72 && r.bottom>80;}).length;
+ const checks=[...document.querySelectorAll('input[type=checkbox][data-check]')];
+ const done=checks.filter(c=>c.checked).length;
+ const pct=Math.min(100,Math.round((visited/sections.length)*70+(done/checks.length)*30));
+ $('#progressFill').style.width=pct+'%'; $('#progressText').textContent=pct+'% explored';
+}
+window.addEventListener('scroll',updateProgress,{passive:true}); updateProgress();
+</script>
+</body>
+</html>
