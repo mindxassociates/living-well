@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Living Well, Preparing Well</title>
+<meta name="description" content="一份帮助你思考和谈论严重疾病、生命终点、失去、意义，以及最重要之事的互动指南。">
+<style>
+:root{
+  --bg:#f7f7f3; --card:#fff; --ink:#24312d; --muted:#64706b; --line:#dfe5e1;
+  --accent:#3e6b61; --accent2:#dcebe5; --warm:#f4e7d5; --warm2:#fff8ee;
+  --shadow:0 12px 30px rgba(31,50,44,.08); --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,sans-serif;line-height:1.65}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{color:var(--accent)}
+header{padding:52px 20px 36px;background:linear-gradient(135deg,#e7f1ed,#f8f3ea)}
+.hero{max-width:1050px;margin:auto}
+.eyebrow{font-weight:750;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:var(--accent)}
+h1{font-size:clamp(2.3rem,6vw,4.8rem);line-height:1.03;margin:12px 0 18px;max-width:850px;letter-spacing:-.04em}
+.hero p{font-size:1.18rem;max-width:760px;color:#50605a}
+.notice{margin-top:25px;padding:15px 18px;border-left:4px solid var(--accent);background:rgba(255,255,255,.7);border-radius:10px;color:#46534e}
+.progress-wrap{position:sticky;top:0;z-index:20;background:rgba(247,247,243,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.progress{max-width:1050px;margin:auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
+.progressbar{height:8px;background:#e1e7e3;border-radius:99px;flex:1;overflow:hidden}.progressbar span{display:block;height:100%;width:0;background:var(--accent);transition:.3s}
+.progress small{white-space:nowrap;color:var(--muted)}
+nav{max-width:1050px;margin:20px auto 0;padding:0 16px;display:flex;gap:8px;overflow:auto}
+nav a{white-space:nowrap;text-decoration:none;background:#fff;border:1px solid var(--line);padding:8px 13px;border-radius:99px;font-size:.9rem}
+main{max-width:1050px;margin:auto;padding:10px 16px 70px}
+section{scroll-margin-top:75px;padding:42px 0 10px}
+.section-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:22px}
+.num{flex:0 0 44px;height:44px;border-radius:14px;background:var(--accent);color:white;display:grid;place-items:center;font-weight:800}
+h2{font-size:2rem;line-height:1.15;margin:0 0 7px;letter-spacing:-.025em}
+.lead{margin:0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 10px;font-size:1.12rem}
+.card p:last-child{margin-bottom:0}
+.callout{background:var(--accent2);border:0}
+.warm{background:var(--warm2)}
+ul{padding-left:1.2rem} li{margin:.45rem 0}
+details{background:#fff;border:1px solid var(--line);border-radius:15px;margin:10px 0;padding:14px 16px}
+summary{font-weight:750;cursor:pointer}
+.reflection{margin-top:16px;background:#f1f4f1;border-radius:16px;padding:18px}
+textarea{width:100%;min-height:105px;border:1px solid #cfd8d3;border-radius:12px;padding:12px;background:#fff;resize:vertical}
+.save-row{display:flex;gap:10px;align-items:center;margin-top:9px}
+.btn{border:0;border-radius:11px;padding:9px 14px;background:var(--accent);color:#fff;font-weight:700}
+.btn.secondary{background:#e7ece9;color:var(--ink)}
+.checklist label{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.checklist input{margin-top:5px;accent-color:var(--accent);transform:scale(1.15)}
+.pill{display:inline-block;padding:4px 9px;border-radius:99px;background:#edf1ef;color:#52605a;font-size:.8rem;font-weight:700}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 12px}.tab.active{background:var(--accent);color:#fff}
+.tabpanel{display:none}.tabpanel.active{display:block}
+.quote{font-size:1.2rem;font-weight:650;line-height:1.5;padding:24px;background:var(--warm);border-radius:18px}
+.meter{height:12px;background:#e2e7e4;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--accent);transition:.3s}
+footer{padding:32px 16px;text-align:center;color:var(--muted);border-top:1px solid var(--line);background:#fff}
+footer a{font-weight:750}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.card{padding:18px}section{padding-top:32px}nav{margin-top:10px}h2{font-size:1.65rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<div class="hero">
+<div class="eyebrow">一份温和的自我思考与对话指南</div>
+<h1>好好生活，也好好准备</h1>
+<p>想到严重疾病、生命终点、失去，以及什么对自己最重要，可能会让人感到不知所措。这份指南会把这些沉重的问题拆成一个个更容易面对的小部分，让你可以按照自己的节奏去理解、思考、交流，并做出选择。</p>
+<div class="notice"><strong>你不需要回答所有问题。</strong> 如果某个问题让你觉得难以承受，可以先跳过，之后再回来。如果某个问题引起了强烈的不适，请先停下来，并联系你信任的人或专业人士。</div>
+</div>
+</header>
+
+<div class="progress-wrap">
+<div class="progress"><small id="progressText">已探索 0%</small><div class="progressbar"><span id="progressFill"></span></div><small>慢慢来</small></div>
+</div>
+<nav>
+<a href="#start">开始</a><a href="#patterns">变化</a><a href="#coping">应对</a><a href="#language">沟通</a><a href="#planning">提前规划</a><a href="#perspective">换个角度</a><a href="#legacy">留下什么</a><a href="#meaning">意义</a><a href="#actions">下一步</a>
+</nav>
+
+<main>
+<section id="start">
+<div class="section-head"><div class="num">1</div><div><h2>从一个简单的想法开始</h2><p class="lead">死亡是生命的一部分，但很多人很少有机会真正了解或谈论死亡。</p></div></div>
+<div class="grid">
+<div class="card callout"><h3>为什么提前准备会有帮助</h3><p>当我们不知道会发生什么时，大脑常常会用电视、新闻、故事或过去的经历来填补未知，而这些想象可能令人害怕。了解生命终点的过程，可以让未知不再那么神秘，也能帮助家人更有准备。</p></div>
+<div class="card"><h3>提前准备，不等于放弃</h3><p>为可能出现的身体衰退做准备，并不意味着停止生活。相反，它可以帮助我们更诚实地思考舒适、关系、优先事项，以及想如何度过拥有的时间。</p></div>
+<div class="card"><h3>没有一种唯一“正确”的经历</h3><p>每个人害怕、期待、相信和想要的东西都不同。有些人害怕过程，有些人害怕死亡的那一刻，有些人害怕分离，也有人会从信仰或连接感中获得安慰。最好的开始，是保持好奇：<strong>去询问，而不是自以为是地猜测。</strong></p></div>
+<div class="card"><h3>照护可以关注完整的“人”</h3><p>好的姑息治疗并不只是关注生命最后的时刻。它也可以关注身体症状，以及情绪、社会和精神层面的需要；当一个人患有严重疾病时，即使还没有进入生命最后阶段，也可能从中受益。</p></div>
+</div>
+<div class="reflection"><strong>快速自我觉察：</strong> 当你想到死亡或严重疾病时，首先出现的是什么感受？<br><br>
+<label><input type="radio" name="feeling" value="curious"> 好奇</label>&nbsp;&nbsp;
+<label><input type="radio" name="feeling" value="uneasy"> 不安</label>&nbsp;&nbsp;
+<label><input type="radio" name="feeling" value="afraid"> 害怕</label>&nbsp;&nbsp;
+<label><input type="radio" name="feeling" value="neutral"> 平静</label>&nbsp;&nbsp;
+<label><input type="radio" name="feeling" value="other"> 其他</label>
+</div>
+</section>
+
+<section id="patterns">
+<div class="section-head"><div class="num">2</div><div><h2>了解可能出现的变化</h2><p class="lead">了解一些常见变化，可以减少恐惧，也能帮助亲友知道什么时候更应该关注舒适感与陪伴。</p></div></div>
+<div class="card">
+<div class="quote">理解生命最后阶段的一种方式是：人的精力会逐渐减少。一个人可能越来越疲倦、睡得更多、清醒的时间越来越少，最终可能进入深度无意识状态。</div>
+<p>每种疾病、每个人的情况都不同，所以这不是时间表，也不是预测。它只是帮助我们理解：身体可能会逐渐放慢。</p>
+<div class="grid">
+<div><h3>随着精力下降</h3><ul><li>活动可能变得更短，也更容易疲惫。</li><li>休息和睡眠可能变得越来越重要。</li><li>清醒的时间可能逐渐减少。</li><li>临近生命终点时，一个人可能大部分时间都处于无意识状态。</li></ul></div>
+<div><h3>临近生命终点</h3><ul><li>呼吸的深浅、速度和节律可能发生变化。</li><li>呼吸之间可能出现停顿。</li><li>呼吸可能逐渐变得安静，最终停止。</li><li>资料中描述的过程，往往比人们想象的更加平静。</li></ul></div>
+</div>
+<div class="notice"><strong>重要提示：</strong> 呼吸、清醒程度、躁动、疼痛或其他症状的变化，应由当事人的医疗团队进行判断。不要仅凭这份指南自行诊断或处理症状。</div>
+</div>
+<details><summary>如果突然出现一阵“精神变好”呢？</summary><p>有时，一个状态持续下降的人可能会突然短暂地变得更有精力或更活跃。资料指出，这种情况有时会发生在最后一次明显下降之前；同时，药物副作用造成的明显躁动，也可能看起来像“精神变好”。关键是综合观察整体情况，而不要因为一次突然的变化就认定是在恢复。</p></details>
+<div class="reflection"><strong>想一想：</strong> 如果你正在陪伴一个接近生命终点的人，什么会让你觉得自己更有准备？<textarea id="r-patterns" placeholder="写下几句话……"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-patterns')">保存思考</button><span id="saved-r-patterns"></span></div></div>
+</section>
+
+<section id="coping">
+<div class="section-head"><div class="num">3</div><div><h2>每个人都有不同的应对方式</h2><p class="lead">应对方式没有高低之分。保护一个人的方式，可能反而会让另一个人感到挫败。</p></div></div>
+<div class="grid">
+<div class="card"><span class="pill">掌控</span><h3>“告诉我计划。”</h3><p>有些人会通过收集信息、整理细节、尽量保持掌控感来应对。</p></div>
+<div class="card"><span class="pill">回避</span><h3>“我不想去想这件事。”</h3><p>有些人会把注意力转向别处，或减少接触令人害怕的信息。</p></div>
+<div class="card"><span class="pill">无力感</span><h3>“我一个人做不到。”</h3><p>觉得自己无能为力可能很痛苦，但也可能为他人的照顾和支持留下空间。</p></div>
+<div class="card"><span class="pill">接纳</span><h3>“我会面对接下来的一切。”</h3><p>有些人会把注意力放在接纳无法改变的事情，并适应每一个阶段。</p></div>
+<div class="card"><span class="pill">韧性</span><h3>“我现在还能做什么？”</h3><p>有些人会创造性地调整自己、保留日常节奏，并在新的限制中寻找有意义的活动。</p></div>
+<div class="card"><span class="pill">焦虑关注</span><h3>“如果出了问题怎么办？”</h3><p>有些人会对潜在风险高度警觉，并反复寻求确认或信息。</p></div>
+</div>
+<div class="card warm" style="margin-top:16px"><h3>当不同的应对方式发生冲突</h3><p>习惯规划的人可能会觉得回避这个话题的人“不在乎”；而倾向回避的人也可能觉得规划者给了自己太大压力。两者都不代表谁“应对得更好”。重要的是看见差异，说出来，并找到双方都能接受的方式。</p></div>
+<div class="reflection"><strong>试试看：</strong> 当生活变得令人害怕时，哪种方式最像你？<br><br>
+<select id="style" style="padding:10px;border:1px solid #cfd8d3;border-radius:10px">
+<option value="">请选择……</option><option>掌控 and planning</option><option>回避话题</option><option>希望别人来处理</option><option>接纳并适应</option><option>寻找继续投入生活的方式</option><option>担忧并寻求确认</option><option>混合型</option>
+</select>
+<p><small>然后问问自己：“这种方式帮助我做到了什么？又可能让什么变得更困难？”</small></p></div>
+</section>
+
+<section id="language">
+<div class="section-head"><div class="num">4</div><div><h2>用清晰的语言表达</h2><p class="lead">直接谈论死亡，可以让困难的对话变得更清楚。</p></div></div>
+<div class="grid">
+<div class="card callout"><h3>为什么用词很重要</h3><p>委婉说法听起来可能更温和，但也可能让人产生歧义。清晰地使用<strong>临终</strong>、<strong>去世</strong>和<strong>死亡</strong>等词，可以帮助大家理解正在发生什么，并做出知情选择。</p></div>
+<div class="card"><h3>询问，而不是猜测</h3><p>不要自以为知道别人所说的“善终”是什么意思，也不要猜测他们害怕什么、相信什么或想接受怎样的照护。提出开放式问题，并认真听答案。</p></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>开启对话的几个问题</h3>
+<details><summary>““如果你的健康状况明显恶化，对你来说最重要的会是什么？””</summary><p>留意对方真正看重的事情：舒适、保持清醒、在家、和特定的人在一起、独立、尚未完成的责任，或其他事情。</p></details>
+<details><summary>““你最担心的是什么？””</summary><p>不要急着安慰或保证“一切都会没事”。当恐惧能够被完整地表达和理解之后，它往往会更容易面对。</p></details>
+<details><summary>““如果你无法为自己表达意见，谁需要知道你的意愿？””</summary><p>这可以开启关于预先照护计划的讨论，并让可能需要替你做决定的亲友和专业人士了解你的意愿。</p></details>
+<details><summary>““如果两者发生冲突，你更希望尽可能延长生命，还是更重视舒适和生活质量？””</summary><p>没有适用于所有人的答案。这些问题关乎个人价值观，值得和亲友及医疗专业人士认真讨论。</p></details>
+</div>
+<div class="reflection"><strong>可以进行的一次对话：</strong><textarea id="r-language" placeholder="你可以和谁谈谈？你希望对方理解什么？"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-language')">保存思考</button><span id="saved-r-language"></span></div></div>
+</section>
+
+<section id="planning">
+<div class="section-head"><div class="num">5</div><div><h2>在危机发生之前提前规划</h2><p class="lead">提前规划，可以把“希望他们知道我的想法”变成更清晰的指引。</p></div></div>
+<div class="card callout"><h3>一份计划可以回答这些实际问题</h3><p>如果条件允许，你希望在哪里接受照护？谁应该知道你的意愿？如果治疗无法让你恢复到自己所珍视的生活状态，什么最重要？紧急情况下应该怎么办？如果你无法表达，你希望别人理解什么？</p></div>
+<div class="grid" style="margin-top:16px">
+<div class="card checklist"><h3>我的规划清单</h3>
+<label><input type="checkbox" data-check="care"> 我想过“生活质量”对我意味着什么。</label>
+<label><input type="checkbox" data-check="place"> 如果条件允许，我想过自己更希望在哪里接受照护。</label>
+<label><input type="checkbox" data-check="person"> 我知道希望谁参与重要决定。</label>
+<label><input type="checkbox" data-check="wishes"> 我已经把重要的意愿告诉了我信任的人。</label>
+<label><input type="checkbox" data-check="medical"> 我知道有哪些医疗问题需要和医疗团队讨论。</label>
+<label><input type="checkbox" data-check="documents"> 我知道重要的规划文件放在哪里。</label>
+</div>
+<div class="card"><h3>一个重要的区别</h3><p>关于心肺复苏的医疗指令，并不等同于拒绝所有治疗。资料特别强调：心肺复苏的决定和其他治疗决定，是不同的问题。</p><p><strong>如果在美国进行规划：</strong> 不同州使用的术语和文件可能不同。请和你的临床医生，以及适合你的法律或预先照护规划资源讨论相关表格。</p><div class="notice">本页面仅用于健康教育，不构成医疗或法律建议。</div></div>
+</div>
+</section>
+
+<section id="perspective">
+<div class="section-head"><div class="num">6</div><div><h2>退一步，再看一看</h2><p class="lead">当情绪很强烈时，我们最初的理解未必就是事情的全貌。</p></div></div>
+<div class="grid">
+<div class="card"><h3>从确定 → 好奇</h3><p>与其说“我知道这到底意味着什么”，不如问“还有什么可能正在发生？”好奇心可以为新的信息留下空间。</p></div>
+<div class="card"><h3>从表面 → 意义</h3><p>一个看起来令人困惑、消极、夸张或不理性的行为，对正在经历它的人来说可能有不同的意义。试着听见行为背后的需要。</p></div>
+<div class="card"><h3>从解决 → 陪伴</h3><p>有时，最有帮助的并不是解决问题，而是陪在身边、倾听、说出正在发生的事情，并帮助对方感到安全。</p></div>
+<div class="card"><h3>从“我们的感受” → “对方的体验”</h3><p>对我们来说难以承受的事情，对正在经历的人而言，可能仍然包含有意义的时刻。不要用自己的优先事项取代对方的选择。</p></div>
+</div>
+<div class="reflection"><h3>换个角度练习</h3><p>想一件让你困扰的事情，完成下面三句话：</p>
+<label>我注意到： <textarea id="r-notice" placeholder="发生了什么？我观察到了什么？"></textarea></label>
+<label>我的假设： <textarea id="r-assume" placeholder="我第一时间赋予了它什么意义？"></textarea></label>
+<label>还有什么可能？ <textarea id="r-alternative" placeholder="还有什么其他解释也可能成立？"></textarea></label>
+<button class="btn" onclick="saveAll(['r-notice','r-assume','r-alternative'])">保存思考</button> <span id="saved-r-notice"></span>
+</div>
+</section>
+
+<section id="legacy">
+<div class="section-head"><div class="num">7</div><div><h2>留下的，不只是物品</h2><p class="lead">我们会通过关系、故事、行动、价值观，以及我们对他人的影响留下痕迹。</p></div></div>
+<div class="grid">
+<div class="card"><h3>你从别人那里得到的</h3><p>不要只想到金钱或物品。你可能继承了故事、习惯、鼓励、价值观、技能、传统，或对待他人的方式。</p></div>
+<div class="card"><h3>你已经给予的</h3><p>你可能早已通过一些日常的事情改变过他人的生活：教别人、倾听、照顾、创造、养育一个人、让工作环境更友善，或在困难中展现勇气。</p></div>
+<div class="card callout"><h3>你想留下什么</h3><p>留下的东西可以是有意识的：信件、照片、故事、一份礼物、一项事业或一种传统；也可以只是别人记得和你在一起时的感受。</p></div>
+<div class="card"><h3>从小事开始</h3><p>你不需要做一个宏大的项目。一次谈话、一封信、一张标注姓名的照片，或为所爱的人记录一个故事，都可能很有意义。</p></div>
+</div>
+<div class="reflection"><strong>我的“留下什么”地图</strong>
+<textarea id="r-legacy" placeholder="我从别人那里得到了什么？我已经给予了什么？我希望把什么传下去？"></textarea>
+<div class="save-row"><button class="btn" onclick="saveNote('r-legacy')">保存思考</button><span id="saved-r-legacy"></span></div></div>
+</section>
+
+<section id="meaning">
+<div class="section-head"><div class="num">8</div><div><h2>意义、价值与连接</h2><p class="lead">有意义的人生，并不要求你遵循某一种特定的宗教、哲学或世界观。</p></div></div>
+<div class="card">
+<p>People make meaning through many frameworks: faith, relationships, nature, art, music, community, ethics, service, or a sense of connection to something larger than themselves. 临近生命终点 of life, people may review what their life has meant and what matters now.</p>
+<div class="grid">
+<div><h3>四句话</h3><p class="quote" style="font-size:1.05rem">“我爱你。”<br>“对不起。”<br>“请原谅我。”<br>“谢谢你。”</p></div>
+<div><h3>为什么重要</h3><p>这些话可以表达爱、修复、遗憾、宽恕、感谢和连接。不需要等到一个人临终时才说。</p></div>
+</div>
+</div>
+<div class="card warm" style="margin-top:16px"><h3>价值观小检查</h3><p>问问自己：“如果我的生活能更多地符合我所珍视的价值，我会做出什么不同的选择？”</p>
+<div class="tabs"><button class="tab active" data-tab="values">价值</button><button class="tab" data-tab="gratitude">感恩</button><button class="tab" data-tab="forgive">宽恕</button></div>
+<div id="values" class="tabpanel active"><textarea id="r-values" placeholder="我希望自己的日常生活体现哪些价值？"></textarea></div>
+<div id="gratitude" class="tabpanel"><textarea id="r-gratitude" placeholder="我想感谢谁？想感谢对方什么？"></textarea></div>
+<div id="forgive" class="tabpanel"><textarea id="r-forgive" placeholder="有没有一件道歉、修复、宽恕，或自我宽恕的事情，是我想认真考虑的？"></textarea></div>
+<button class="btn" onclick="saveAll(['r-values','r-gratitude','r-forgive'])">保存思考s</button></div>
+</section>
+
+<section id="actions">
+<div class="section-head"><div class="num">9</div><div><h2>把思考变成一个小行动</h2><p class="lead">目标不是解决“死亡”这个问题，而是更清楚地知道什么对自己重要，并据此生活。</p></div></div>
+<div class="card checklist">
+<label><input type="checkbox" data-check="talk"> 和一个我信任的人进行一次真诚的谈话。</label>
+<label><input type="checkbox" data-check="ask"> 向我的医疗专业人士问一个我一直回避的问题。</label>
+<label><input type="checkbox" data-check="values2"> 选择一个价值，并在这周实践它。</label>
+<label><input type="checkbox" data-check="thank"> 对一个人说“谢谢你”。</label>
+<label><input type="checkbox" data-check="love"> 对一个人说“我爱你”，或用明确的方式表达出来。</label>
+<label><input type="checkbox" data-check="sorry"> 在合适且安全的情况下，为一段重要关系道歉或做出修复。</label>
+<label><input type="checkbox" data-check="legacy2"> 记录或保存一个故事、一张照片、一份食谱、一段话或一段记忆。</label>
+<label><input type="checkbox" data-check="plan2"> 开始或更新我的预先照护规划。</label>
+</div>
+<div class="card callout" style="margin-top:16px"><h3>带在身边的一句话</h3><p class="quote">你不需要预测未来才能为它做准备；你可以先弄清楚什么最重要，让它指引你的下一步。</p></div>
+<div class="reflection"><h3>我的下一步</h3><textarea id="r-next" placeholder="我接下来要做的一件小事是……"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-next')">保存</button><span id="saved-r-next"></span></div></div>
+</section>
+
+<section>
+<div class="card">
+<h3>一个温柔的提醒</h3>
+<p>了解生命终点可能带来悲伤、哀痛、恐惧、释然，或意料之外的回忆。你可以随时停下来。如果某些经历持续困扰你、让你仿佛再次经历当时的事情，或已经影响日常生活，可以考虑和医疗或心理健康专业人士谈谈。</p>
+<p><strong>这份指南不能替代个体化的医疗、心理健康、法律或精神层面的照护。</strong></p>
+</div>
+</section>
+</main>
+
+<footer>
+由 <a href="https://mindx.us/zh/" target="_blank" rel="noopener noreferrer">Mind X社区</a> 开发
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const notes=[...document.querySelectorAll('textarea')];
+notes.forEach(t=>{const v=localStorage.getItem('guide-'+t.id); if(v!==null)t.value=v;});
+document.querySelectorAll('input[type=checkbox][data-check]').forEach(c=>{
+  c.checked=localStorage.getItem('check-'+c.dataset.check)==='1';
+  c.addEventListener('change',()=>{localStorage.setItem('check-'+c.dataset.check,c.checked?'1':'0');updateProgress();});
+});
+function saveNote(id){
+  const t=document.getElementById(id); localStorage.setItem('guide-'+id,t.value);
+  const s=document.getElementById('saved-'+id); if(s){s.textContent='已保存在本地';setTimeout(()=>s.textContent='',1600);}
+}
+function saveAll(ids){ids.forEach(saveNote); const el=document.getElementById('saved-'+ids[0]); if(el){el.textContent='已保存在本地';setTimeout(()=>el.textContent='',1600);}}
+document.querySelectorAll('.tab').forEach(btn=>{
+ btn.addEventListener('click',()=>{
+   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+   document.querySelectorAll('.tabpanel').forEach(x=>x.classList.remove('active'));
+   btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active');
+ });
+});
+function updateProgress(){
+ const sections=[...document.querySelectorAll('main section')].filter(s=>s.id);
+ const visited=sections.filter(s=>{const r=s.getBoundingClientRect();return r.top<window.innerHeight*.72 && r.bottom>80;}).length;
+ const checks=[...document.querySelectorAll('input[type=checkbox][data-check]')];
+ const done=checks.filter(c=>c.checked).length;
+ const pct=Math.min(100,Math.round((visited/sections.length)*70+(done/checks.length)*30));
+ $('#progressFill').style.width=pct+'%'; $('#progressText').textContent=pct+'% explored';
+}
+window.addEventListener('scroll',updateProgress,{passive:true}); updateProgress();
+</script>
+</body>
+</html>
