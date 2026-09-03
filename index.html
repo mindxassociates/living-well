@@ -56,10 +56,32 @@ textarea{width:100%;min-height:105px;border:1px solid #cfd8d3;border-radius:12px
 .tabpanel{display:none}.tabpanel.active{display:block}
 .quote{font-size:1.2rem;font-weight:650;line-height:1.5;padding:24px;background:var(--warm);border-radius:18px}
 .meter{height:12px;background:#e2e7e4;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--accent);transition:.3s}
+.tools{max-width:1050px;margin:14px auto 0;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+.tools .btn{display:inline-flex;gap:7px;align-items:center}
+.status{font-size:.86rem;color:var(--muted);align-self:center;margin-left:auto}
+.section-actions{display:flex;justify-content:flex-end;margin-top:14px}
+.done-btn{border:1px solid var(--line);background:#fff;color:var(--ink)}
+.done-btn.is-done{background:var(--accent2);border-color:var(--accent);color:#244c43}
+.prompt-box{min-height:110px;display:grid;place-items:center;text-align:center;padding:22px;background:var(--warm2);border:1px dashed #cdbb9e;border-radius:16px;font-weight:650}
+body.focus-mode .card:not(.reflection):not(.callout),body.focus-mode details,body.focus-mode .notice{display:none}
+body.focus-mode section{padding-top:28px}
 footer{padding:32px 16px;text-align:center;color:var(--muted);border-top:1px solid var(--line);background:#fff}
 footer a{font-weight:750}
 @media(max-width:720px){.grid{grid-template-columns:1fr}.card{padding:18px}section{padding-top:32px}nav{margin-top:10px}h2{font-size:1.65rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{
+ @page{size:letter;margin:.55in}
+ :root{--bg:#fff;--card:#fff;--ink:#111;--muted:#444;--line:#bbb;--shadow:none}
+ body{font-size:10.5pt;line-height:1.4;background:#fff;color:#111}
+ header{padding:0 0 16px;background:none;border-bottom:2px solid #333}
+ h1{font-size:27pt;margin:4px 0 8px}.hero p{font-size:11pt}.eyebrow{color:#333}
+ .progress-wrap,nav,.tools,.save-row,.section-actions,.tabs,.notice,.no-print{display:none!important}
+ main{max-width:none;padding:0}section{padding:20px 0 0;break-before:page}section#start{break-before:auto}
+ .section-head{margin-bottom:12px}.num{background:#fff;color:#111;border:1px solid #777}.grid{gap:10px}.card,.reflection,details,.quote{box-shadow:none;background:#fff;border:1px solid #bbb;break-inside:avoid;padding:12px}
+ details{display:block}details>*{display:block}details summary{margin-bottom:6px}
+ textarea{border:0;border-bottom:1px solid #999;border-radius:0;min-height:55px;resize:none;overflow:visible;color:#111}
+ input,select{accent-color:#111}footer{padding:15px 0;background:#fff}
+}
 </style>
 </head>
 <body>
@@ -67,13 +89,21 @@ footer a{font-weight:750}
 <div class="hero">
 <div class="eyebrow">A gentle guide for reflection and conversation</div>
 <h1>Living well. Preparing well.</h1>
-<p>Thinking about serious illness, dying, loss, and what matters most can feel overwhelming. This guide breaks big questions into small, manageable pieces—so you can understand, reflect, talk, and make choices at your own pace.</p>
-<div class="notice"><strong>You do not have to answer everything.</strong> Skip anything that feels too much. Come back later. If a question brings up intense distress, pause and reach out to someone you trust or a qualified professional.</div>
+<p>Explore difficult questions in small, manageable steps—at your pace.</p>
+<div class="notice"><strong>You can skip anything.</strong> Pause if you feel overwhelmed and reach out to someone you trust or a qualified professional.</div>
 </div>
 </header>
 
 <div class="progress-wrap">
 <div class="progress"><small id="progressText">0% explored</small><div class="progressbar"><span id="progressFill"></span></div><small>Take your time</small></div>
+</div>
+<div class="tools" aria-label="Guide tools">
+<button class="btn" type="button" onclick="window.print()">Print / Save PDF</button>
+<button class="btn secondary" type="button" id="focusBtn" onclick="toggleFocus()">Reflection mode</button>
+<button class="btn secondary" type="button" onclick="toggleDetails(this)">Open all guidance</button>
+<button class="btn secondary" type="button" onclick="downloadNotes()">Download my notes</button>
+<button class="btn secondary" type="button" onclick="resetGuide()">Reset</button>
+<span class="status" id="globalStatus" aria-live="polite">Saved on this device</span>
 </div>
 <nav>
 <a href="#start">Start</a><a href="#patterns">Patterns</a><a href="#coping">Coping</a><a href="#language">Talking</a><a href="#planning">Planning</a><a href="#perspective">Perspective</a><a href="#legacy">Legacy</a><a href="#meaning">Meaning</a><a href="#actions">Next steps</a>
@@ -83,10 +113,10 @@ footer a{font-weight:750}
 <section id="start">
 <div class="section-head"><div class="num">1</div><div><h2>Start with one simple idea</h2><p class="lead">Death is part of life, but many of us have had little opportunity to see or talk about dying.</p></div></div>
 <div class="grid">
-<div class="card callout"><h3>Why preparation can help</h3><p>When we do not know what to expect, our minds often fill the gaps with frightening images from television, news, stories, or previous experiences. Learning about dying can make the unfamiliar less mysterious and can help families feel more prepared.</p></div>
-<div class="card"><h3>Preparation is not giving up</h3><p>Planning for possible decline does not mean you have stopped living. It can make room for honest choices about comfort, relationships, priorities, and how you want to spend the time you have.</p></div>
-<div class="card"><h3>There is no single “right” experience</h3><p>People differ in what they fear, hope for, believe, and want. Some fear the process; some fear the moment of death; some fear separation; some find comfort in faith or a sense of connection. The safest starting point is curiosity: <strong>ask rather than assume.</strong></p></div>
-<div class="card"><h3>Care can be whole-person care</h3><p>Good palliative care is not only about the final moments. It can address physical symptoms as well as emotional, social, and spiritual concerns, and can be useful when someone has serious illness even before the very end of life.</p></div>
+<div class="card callout"><h3>Preparation reduces uncertainty</h3><p>Clear information can make the unfamiliar less frightening.</p></div>
+<div class="card"><h3>Planning is not giving up</h3><p>It creates room for choices about comfort, relationships, and time.</p></div>
+<div class="card"><h3>There is no “right” response</h3><p>Fears, hopes, beliefs, and preferences differ. <strong>Ask rather than assume.</strong></p></div>
+<div class="card"><h3>Care can support the whole person</h3><p>Palliative care can address physical, emotional, social, and spiritual needs throughout serious illness.</p></div>
 </div>
 <div class="reflection"><strong>Quick check-in:</strong> What feeling comes up when you think about death or serious illness?<br><br>
 <label><input type="radio" name="feeling" value="curious"> Curious</label>&nbsp;&nbsp;
@@ -95,6 +125,7 @@ footer a{font-weight:750}
 <label><input type="radio" name="feeling" value="neutral"> Neutral</label>&nbsp;&nbsp;
 <label><input type="radio" name="feeling" value="other"> Something else</label>
 </div>
+<div class="section-actions"><button class="btn done-btn" data-section="start">Mark complete</button></div>
 </section>
 
 <section id="patterns">
@@ -110,6 +141,7 @@ footer a{font-weight:750}
 </div>
 <details><summary>What about a sudden burst of energy?</summary><p>Sometimes a person who has been declining may have an unexpected temporary increase in energy or activity. The source describes this as sometimes occurring before a final decline, while also showing that medication side effects can mimic “energy” through severe restlessness. The key lesson is to look carefully at the whole picture rather than assuming a sudden change means recovery.</p></details>
 <div class="reflection"><strong>Reflect:</strong> If you were supporting someone near the end of life, what would help you feel more prepared?<textarea id="r-patterns" placeholder="Write a few words…"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-patterns')">Save reflection</button><span id="saved-r-patterns"></span></div></div>
+<div class="section-actions"><button class="btn done-btn" data-section="patterns">Mark complete</button></div>
 </section>
 
 <section id="coping">
@@ -128,6 +160,7 @@ footer a{font-weight:750}
 <option value="">Choose one…</option><option>Control and planning</option><option>Avoiding the subject</option><option>Looking for others to take over</option><option>Accepting and adapting</option><option>Finding ways to stay engaged</option><option>Worrying and seeking reassurance</option><option>A mixture</option>
 </select>
 <p><small>Then ask: “What does this style help me do? What might it make harder?”</small></p></div>
+<div class="section-actions"><button class="btn done-btn" data-section="coping">Mark complete</button></div>
 </section>
 
 <section id="language">
@@ -143,6 +176,7 @@ footer a{font-weight:750}
 <details><summary>“Would you rather focus on living as long as possible, or on comfort and quality of life if those goals conflict?”</summary><p>There is no universal answer. These are personal values questions that deserve careful discussion with loved ones and healthcare professionals.</p></details>
 </div>
 <div class="reflection"><strong>One conversation to have:</strong><textarea id="r-language" placeholder="Who could you talk with, and what would you want them to understand?"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-language')">Save reflection</button><span id="saved-r-language"></span></div></div>
+<div class="section-actions"><button class="btn done-btn" data-section="language">Mark complete</button></div>
 </section>
 
 <section id="planning">
@@ -159,6 +193,7 @@ footer a{font-weight:750}
 </div>
 <div class="card"><h3>Important distinction</h3><p>A medical order about resuscitation is not the same as refusing all treatment. The source specifically emphasizes that decisions about resuscitation and other treatments are separate questions.</p><p><strong>For U.S. planning:</strong> terminology and documents vary by state. Talk with your clinician and appropriate legal/advance-care-planning resources about the forms that apply to you.</p><div class="notice">This page is educational, not medical or legal advice.</div></div>
 </div>
+<div class="section-actions"><button class="btn done-btn" data-section="planning">Mark complete</button></div>
 </section>
 
 <section id="perspective">
@@ -167,7 +202,7 @@ footer a{font-weight:750}
 <div class="card"><h3>From certainty → curiosity</h3><p>Instead of “I know exactly what this means,” try “What else might be happening?” Curiosity creates room for new information.</p></div>
 <div class="card"><h3>From appearance → meaning</h3><p>A behavior that looks confusing, passive, dramatic, or irrational may have a different meaning to the person experiencing it. Listen for the need underneath the behavior.</p></div>
 <div class="card"><h3>From fixing → accompanying</h3><p>Sometimes the most helpful action is not solving the situation. It is being present, listening, naming what is happening, and helping someone feel safe.</p></div>
-<div class="card"><h3>From “their experience” → “their experience”</h3><p>What looks unbearable to us may still contain moments that are meaningful to the person living it. Do not substitute your priorities for theirs.</p></div>
+<div class="card"><h3>From my priorities → their priorities</h3><p>What looks unbearable to us may still hold meaning for the person living it. Let their priorities lead.</p></div>
 </div>
 <div class="reflection"><h3>Perspective practice</h3><p>Think of a difficult situation. Complete these three lines:</p>
 <label>What I notice: <textarea id="r-notice" placeholder="What happened? What did I observe?"></textarea></label>
@@ -175,6 +210,7 @@ footer a{font-weight:750}
 <label>What else might be true: <textarea id="r-alternative" placeholder="What other interpretation could fit?"></textarea></label>
 <button class="btn" onclick="saveAll(['r-notice','r-assume','r-alternative'])">Save reflection</button> <span id="saved-r-notice"></span>
 </div>
+<div class="section-actions"><button class="btn done-btn" data-section="perspective">Mark complete</button></div>
 </section>
 
 <section id="legacy">
@@ -188,6 +224,7 @@ footer a{font-weight:750}
 <div class="reflection"><strong>Legacy map</strong>
 <textarea id="r-legacy" placeholder="What did I receive? What have I already given? What would I like to pass on?"></textarea>
 <div class="save-row"><button class="btn" onclick="saveNote('r-legacy')">Save reflection</button><span id="saved-r-legacy"></span></div></div>
+<div class="section-actions"><button class="btn done-btn" data-section="legacy">Mark complete</button></div>
 </section>
 
 <section id="meaning">
@@ -205,6 +242,7 @@ footer a{font-weight:750}
 <div id="gratitude" class="tabpanel"><textarea id="r-gratitude" placeholder="Who would I like to thank, and what for?"></textarea></div>
 <div id="forgive" class="tabpanel"><textarea id="r-forgive" placeholder="Is there an apology, repair, forgiveness, or self-forgiveness I want to consider?"></textarea></div>
 <button class="btn" onclick="saveAll(['r-values','r-gratitude','r-forgive'])">Save reflections</button></div>
+<div class="section-actions"><button class="btn done-btn" data-section="meaning">Mark complete</button></div>
 </section>
 
 <section id="actions">
@@ -221,6 +259,8 @@ footer a{font-weight:750}
 </div>
 <div class="card callout" style="margin-top:16px"><h3>One sentence to carry with you</h3><p class="quote">You do not need to predict the future to prepare for it; you can clarify what matters and let that guide the next step.</p></div>
 <div class="reflection"><h3>My next step</h3><textarea id="r-next" placeholder="The one small thing I will do next is…"></textarea><div class="save-row"><button class="btn" onclick="saveNote('r-next')">Save</button><span id="saved-r-next"></span></div></div>
+<div class="card no-print" style="margin-top:16px"><h3>Need a starting point?</h3><div class="prompt-box" id="promptBox">Choose a gentle prompt.</div><div class="section-actions"><button class="btn secondary" type="button" onclick="newPrompt()">Give me a prompt</button></div></div>
+<div class="section-actions"><button class="btn done-btn" data-section="actions">Mark complete</button></div>
 </section>
 
 <section>
@@ -240,6 +280,14 @@ Developed by <a href="https://mindx.us/" target="_blank" rel="noopener noreferre
 const $=s=>document.querySelector(s);
 const notes=[...document.querySelectorAll('textarea')];
 notes.forEach(t=>{const v=localStorage.getItem('guide-'+t.id); if(v!==null)t.value=v;});
+notes.forEach(t=>t.addEventListener('input',()=>{localStorage.setItem('guide-'+t.id,t.value);showStatus('Saved');}));
+document.querySelectorAll('input[type=radio]').forEach(r=>{
+ r.checked=localStorage.getItem('guide-feeling')===r.value;
+ r.addEventListener('change',()=>localStorage.setItem('guide-feeling',r.value));
+});
+const styleSelect=document.getElementById('style');
+styleSelect.value=localStorage.getItem('guide-style')||'';
+styleSelect.addEventListener('change',()=>localStorage.setItem('guide-style',styleSelect.value));
 document.querySelectorAll('input[type=checkbox][data-check]').forEach(c=>{
   c.checked=localStorage.getItem('check-'+c.dataset.check)==='1';
   c.addEventListener('change',()=>{localStorage.setItem('check-'+c.dataset.check,c.checked?'1':'0');updateProgress();});
@@ -248,6 +296,7 @@ function saveNote(id){
   const t=document.getElementById(id); localStorage.setItem('guide-'+id,t.value);
   const s=document.getElementById('saved-'+id); if(s){s.textContent='Saved locally';setTimeout(()=>s.textContent='',1600);}
 }
+function showStatus(message){const el=$('#globalStatus');el.textContent=message;clearTimeout(showStatus.timer);showStatus.timer=setTimeout(()=>el.textContent='Saved on this device',1400);}
 function saveAll(ids){ids.forEach(saveNote); const el=document.getElementById('saved-'+ids[0]); if(el){el.textContent='Saved locally';setTimeout(()=>el.textContent='',1600);}}
 document.querySelectorAll('.tab').forEach(btn=>{
  btn.addEventListener('click',()=>{
@@ -256,15 +305,34 @@ document.querySelectorAll('.tab').forEach(btn=>{
    btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active');
  });
 });
+document.querySelectorAll('.done-btn').forEach(btn=>{
+ const key='section-'+btn.dataset.section;
+ const render=()=>{const done=localStorage.getItem(key)==='1';btn.classList.toggle('is-done',done);btn.textContent=done?'Completed ✓':'Mark complete';};
+ btn.addEventListener('click',()=>{localStorage.setItem(key,localStorage.getItem(key)==='1'?'0':'1');render();updateProgress();});render();
+});
 function updateProgress(){
- const sections=[...document.querySelectorAll('main section')].filter(s=>s.id);
- const visited=sections.filter(s=>{const r=s.getBoundingClientRect();return r.top<window.innerHeight*.72 && r.bottom>80;}).length;
+ const sections=[...document.querySelectorAll('.done-btn')];
+ const visited=sections.filter(b=>localStorage.getItem('section-'+b.dataset.section)==='1').length;
  const checks=[...document.querySelectorAll('input[type=checkbox][data-check]')];
  const done=checks.filter(c=>c.checked).length;
- const pct=Math.min(100,Math.round((visited/sections.length)*70+(done/checks.length)*30));
+ const pct=Math.round((visited+done)/(sections.length+checks.length)*100);
  $('#progressFill').style.width=pct+'%'; $('#progressText').textContent=pct+'% explored';
 }
-window.addEventListener('scroll',updateProgress,{passive:true}); updateProgress();
+function toggleFocus(){document.body.classList.toggle('focus-mode');$('#focusBtn').textContent=document.body.classList.contains('focus-mode')?'Show full guide':'Reflection mode';}
+let detailsOpen=false;
+function toggleDetails(button){detailsOpen=!detailsOpen;document.querySelectorAll('details').forEach(d=>d.open=detailsOpen);button.textContent=detailsOpen?'Close all guidance':'Open all guidance';}
+function downloadNotes(){
+ const lines=['LIVING WELL, PREPARING WELL','Personal reflections',''];
+ notes.forEach(t=>{if(t.value.trim()){const label=t.closest('.reflection,.card')?.querySelector('strong,h3')?.textContent||t.id;lines.push(label+'\n'+t.value.trim()+'\n');}});
+ const completed=[...document.querySelectorAll('.done-btn.is-done')].map(b=>b.dataset.section).join(', ');
+ if(completed)lines.push('Completed sections\n'+completed);
+ const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='living-well-reflections.txt';a.click();URL.revokeObjectURL(a.href);
+}
+function resetGuide(){if(!confirm('Clear all saved reflections and progress on this device?'))return;Object.keys(localStorage).filter(k=>k.startsWith('guide-')||k.startsWith('check-')||k.startsWith('section-')).forEach(k=>localStorage.removeItem(k));location.reload();}
+const prompts=['Who needs to understand what matters most to you?','What would comfort look like on a difficult day?','What is one story you want someone to remember?','What conversation would bring greater clarity?','Which value deserves more space this week?','What support would make the next step easier?'];
+function newPrompt(){const box=$('#promptBox');let next;do{next=prompts[Math.floor(Math.random()*prompts.length)]}while(next===box.textContent&&prompts.length>1);box.textContent=next;}
+window.addEventListener('beforeprint',()=>document.querySelectorAll('details').forEach(d=>d.open=true));
+updateProgress();
 </script>
 </body>
 </html>
